@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AppNavbar from './Components/AppNavbar/AppNavbar'
 import HomePage from './Pages/HomePage/HomrPage'
 import JoueurPage from './Pages/JoueurPage/JoueurPage'
+import JoueurAddPage from './Pages/JoueurAddPage/JoueurAddPage'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,7 +19,8 @@ ReactDOM.render(
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/joueurs/:nom" element={<JoueurPage />} />
+          <Route path="/joueurs" element={<JoueurPage />} />
+          <Route path="/joueurs/add" element={<JoueurAddPage />} />
         </Routes>
       </Router>
     </main>
