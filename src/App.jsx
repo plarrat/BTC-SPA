@@ -13,12 +13,12 @@ function App() {
           <Row>
             <div className="p-5 mb-4 bg-light rounded-3">
               <Container fluid className="py-5">
-                <h1 className="display-5 fw-bold">Custom jumbotron</h1>
+                <h1 className="display-5 fw-bold">
+                  BTC Single Page Application
+                </h1>
                 <p className="col-md-8 fs-4">
-                  Using a series of utilities, you can create this jumbotron,
-                  just like the one in previous versions of Bootstrap. Check out
-                  the examples below for how you can remix and restyle it to
-                  your liking.
+                  TP permettant de mettre en pratique l'utilisation de plusieurs
+                  pages sous ReactJs via l'utilisation de React Router
                 </p>
                 <Button className="btn-lg" type="button">
                   Example button
