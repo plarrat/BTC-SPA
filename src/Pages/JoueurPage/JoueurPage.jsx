@@ -1,11 +1,15 @@
 import { Container, Row, Col } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+
 export default function JoueurPage() {
+  const { nom } = useParams()
+
   return (
     <>
       <Container>
         <Row>
           <Col>
-            <h1>Gestion des joueurs</h1>
+            <h1>Gestion des joueurs - {nom}</h1>
             <hr />
           </Col>
         </Row>

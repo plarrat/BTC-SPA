@@ -18,7 +18,7 @@ ReactDOM.render(
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/joueurs" element={<JoueurPage />} />
+          <Route path="/joueurs/:nom" element={<JoueurPage />} />
         </Routes>
       </Router>
     </main>

@@ -1,6 +1,15 @@
-import { Container, Row } from 'react-bootstrap'
+import { Container, Row, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 export default function HomePage() {
+  const navigate = useNavigate()
+
+  function go() {
+    const nom = window.prompt('Saisir un prénom')
+    if (nom !== null && nom.trim().length > 0) {
+      navigate(`/joueurs/${nom}`)
+    }
+  }
   return (
     <div className="App">
       <main>
@@ -21,6 +30,10 @@ export default function HomePage() {
                 >
                   Documentation React Router
                 </a>
+                &nbsp;
+                <Button variant="outline-primary" size="lg" onClick={go}>
+                  Go Joueur !
+                </Button>
               </Container>
             </div>
           </Row>
