@@ -1,13 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
 import reportWebVitals from './reportWebVitals'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import AppNavbar from './Components/AppNavbar/AppNavbar'
+import HomePage from './Pages/HomePage/HomrPage'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <header className="mb-5">
+      <AppNavbar></AppNavbar>
+    </header>
+
+    <main>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
+    </main>
   </React.StrictMode>,
   document.getElementById('root')
 )

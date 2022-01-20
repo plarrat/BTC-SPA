@@ -1,6 +1,6 @@
-import { Container, Row, Button } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 
-function App() {
+export default function HomePage() {
   return (
     <div className="App">
       <main>
@@ -29,5 +29,3 @@ function App() {
     </div>
   )
 }
-
-export default App
