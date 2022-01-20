@@ -20,11 +20,11 @@ export default function JoueurAddPage() {
     tmpForm.id = id
     setFormAdd(tmpForm)
 
-    let joueurs = localStorage.getItem('btn-spa-joueurs')
+    let joueurs = localStorage.getItem('btc-spa-joueurs')
     if (joueurs === null) joueurs = '[]'
     joueurs = JSON.parse(joueurs)
     joueurs.push(tmpForm)
-    localStorage.setItem('btn-spa-joueurs', JSON.stringify(joueurs))
+    localStorage.setItem('btc-spa-joueurs', JSON.stringify(joueurs))
     navigate('/joueurs')
   }
   return (

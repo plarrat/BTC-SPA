@@ -1,7 +1,28 @@
 import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 export default function JoueurPage() {
+  const [joueurs, setJoueurs] = useState([])
+
+  useEffect(() => {
+    let datas = localStorage.getItem('btc-spa-joueurs')
+      ? localStorage.getItem('btc-spa-joueurs')
+      : []
+    datas = JSON.parse(datas)
+    setJoueurs(datas)
+  }, [])
+
+  let displayJoueurs = joueurs.map((joueur, indice) => {
+    return (
+      <tr key={'joueurs-' + joueur.id}>
+        <td>{indice + 1}</td>
+        <td>{joueur.prenom}</td>
+        <td>{joueur.nom}</td>
+        <td>{joueur.pseudo}</td>
+      </tr>
+    )
+  })
   return (
     <>
       <Container>
@@ -29,25 +50,7 @@ export default function JoueurPage() {
                   <th>Pseudo</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td colSpan={2}>Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
+              <tbody>{displayJoueurs}</tbody>
             </Table>
           </Col>
         </Row>
