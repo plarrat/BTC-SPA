@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 export default function JoueurUpdatePage() {
+  const [joueur, setJoueur] = useState({})
   const [formUpdate, setFormUpdate] = useState({
     id: '',
     prenom: '',
@@ -17,32 +18,37 @@ export default function JoueurUpdatePage() {
   useEffect(() => {
     let liste = localStorage.getItem('btc-spa-joueurs')
     liste = JSON.parse(liste)
-    let joueur = liste.filter(joueur => joueur.id === Number(id))
+    let res = liste.filter(joueur => joueur.id === Number(id))
 
-    if (joueur.length === 0) {
+    if (res.length === 0) {
       alert('Joueur non trouvé dans la base')
       navigate('/joueurs')
     } else {
-      joueur = joueur[0]
-      setFormUpdate(joueur)
+      setJoueur(res[0])
+      setFormUpdate(res[0])
     }
   }, [id, navigate])
 
   function update(e) {
     e.preventDefault()
+    let liste = localStorage.getItem('btc-spa-joueurs')
+    liste = JSON.parse(liste)
 
-    const id = Date.now()
-    let tmpForm = { ...formUpdate }
-    tmpForm.id = id
-    setFormUpdate(tmpForm)
+    console.log(liste)
+    console.log(joueur)
+    let indice = -1
+    for (let i = 0; i < liste.length; i++)
+      if (liste[i].id === Number(id)) indice = i
 
-    let joueurs = localStorage.getItem('btc-spa-joueurs')
-    if (joueurs === null) joueurs = '[]'
-    joueurs = JSON.parse(joueurs)
-    joueurs.push(tmpForm)
-    localStorage.setItem('btc-spa-joueurs', JSON.stringify(joueurs))
+    liste[indice] = formUpdate
+    localStorage.setItem('btc-spa-joueurs', JSON.stringify(liste))
     navigate('/joueurs')
   }
+
+  function reset() {
+    setFormUpdate(joueur)
+  }
+
   return (
     <>
       <Container>
@@ -109,6 +115,7 @@ export default function JoueurUpdatePage() {
                 variant="outline-secondary"
                 className="float-end mx-2"
                 type="reset"
+                onClick={reset}
               >
                 Annuler
               </Button>
