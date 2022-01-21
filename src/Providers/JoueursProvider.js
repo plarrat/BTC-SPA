@@ -8,11 +8,16 @@ export class JoueursProvider {
     localStorage.setItem('btc-spa-joueurs', JSON.stringify(this.joueurs))
   }
 
-  getJoueurs() {
+  load() {
     let datas = localStorage.getItem('btc-spa-joueurs')
     if (datas === null) datas = '[]'
     datas = JSON.parse(datas)
-    return datas
+    this.joueurs = datas
+  }
+
+  getJoueurs() {
+    this.load()
+    return this.joueurs
   }
 
   add(joueur) {
