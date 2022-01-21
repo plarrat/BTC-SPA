@@ -34,11 +34,14 @@ export default function JoueurUpdatePage() {
     let liste = localStorage.getItem('btc-spa-joueurs')
     liste = JSON.parse(liste)
 
-    console.log(liste)
-    console.log(joueur)
     let indice = -1
     for (let i = 0; i < liste.length; i++)
       if (liste[i].id === Number(id)) indice = i
+
+    if (indice === -1) {
+      alert("Erreur lors de l'enregistrement")
+      return null
+    }
 
     liste[indice] = formUpdate
     localStorage.setItem('btc-spa-joueurs', JSON.stringify(liste))
