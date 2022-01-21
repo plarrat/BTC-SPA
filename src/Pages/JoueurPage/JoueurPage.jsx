@@ -13,6 +13,18 @@ export default function JoueurPage() {
     setJoueurs(datas)
   }, [])
 
+  function remove(joueur, indice) {
+    let rep = window.confirm(
+      `Etes-vous sur de vouloir supprimer le joueur ${joueur.prenom} ${joueur.nom}`
+    )
+    if (rep) {
+      let tmp = [...joueurs]
+      tmp.splice(indice, 1)
+      setJoueurs(tmp)
+      localStorage.setItem('btc-spa-joueurs', JSON.stringify(tmp))
+    }
+  }
+
   let displayJoueurs = joueurs.map((joueur, indice) => {
     return (
       <tr key={'joueurs-' + joueur.id}>
@@ -26,7 +38,9 @@ export default function JoueurPage() {
           </Button>
         </td>
         <td>
-          <Button variant="danger">Supprimer</Button>
+          <Button variant="danger" onClick={() => remove(joueur, indice)}>
+            Supprimer
+          </Button>
         </td>
       </tr>
     )
