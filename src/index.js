@@ -8,6 +8,7 @@ import AppNavbar from './Components/AppNavbar/AppNavbar'
 import HomePage from './Pages/HomePage/HomrPage'
 import JoueurPage from './Pages/JoueurPage/JoueurPage'
 import JoueurAddPage from './Pages/JoueurAddPage/JoueurAddPage'
+import JoueurUpdatePage from './Pages/JoueurUpdatePage/JoueurUpdatePage'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.render(
           <Route path="/" element={<HomePage />} />
           <Route path="/joueurs" element={<JoueurPage />} />
           <Route path="/joueurs/add" element={<JoueurAddPage />} />
+          <Route path="/joueurs/:id" element={<JoueurUpdatePage />} />
         </Routes>
       </Router>
     </main>

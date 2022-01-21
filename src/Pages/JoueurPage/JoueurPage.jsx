@@ -20,6 +20,14 @@ export default function JoueurPage() {
         <td>{joueur.prenom}</td>
         <td>{joueur.nom}</td>
         <td>{joueur.pseudo}</td>
+        <td>
+          <Button as={Link} to={'/joueurs/' + joueur.id} variant="warning">
+            Modifier
+          </Button>
+        </td>
+        <td>
+          <Button variant="danger">Supprimer</Button>
+        </td>
       </tr>
     )
   })
@@ -48,6 +56,8 @@ export default function JoueurPage() {
                   <th>Prénom</th>
                   <th>Nom</th>
                   <th>Pseudo</th>
+                  <th>Modifier</th>
+                  <th>Supprimer</th>
                 </tr>
               </thead>
               <tbody>{displayJoueurs}</tbody>
