@@ -2,6 +2,11 @@
 
 Création d'une première application multi pages avec React & React Router
 
+- Réalisation d'un module CRUD
+- Gestion du localStorage
+- Gestion des routes
+- Création d'un Provider (ou Service)
+
 ## Installation
 
 Récupérer le repo via la commande suivante dans votre terminal :
