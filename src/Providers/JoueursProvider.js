@@ -10,6 +10,7 @@ export class JoueursProvider {
 
   getJoueurs() {
     let datas = localStorage.getItem('btc-spa-joueurs')
+    if (datas === null) datas = '[]'
     datas = JSON.parse(datas)
     return datas
   }
