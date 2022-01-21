@@ -1,6 +1,7 @@
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { JoueursProvider } from './../../Providers/JoueursProvider'
 
 export default function JoueurUpdatePage() {
   const [joueur, setJoueur] = useState({})
@@ -10,42 +11,27 @@ export default function JoueurUpdatePage() {
     nom: '',
     pseudo: '',
   })
-
+  const joueursProvider = new JoueursProvider()
   const { id } = useParams()
-
   const navigate = useNavigate()
 
   useEffect(() => {
-    let liste = localStorage.getItem('btc-spa-joueurs')
-    liste = JSON.parse(liste)
-    let res = liste.filter(joueur => joueur.id === Number(id))
+    let tmpJoueur = joueursProvider.getJoueurById(id)
 
-    if (res.length === 0) {
+    if (!tmpJoueur) {
       alert('Joueur non trouvé dans la base')
       navigate('/joueurs')
     } else {
-      setJoueur(res[0])
-      setFormUpdate(res[0])
+      setJoueur(tmpJoueur)
+      setFormUpdate(tmpJoueur)
     }
   }, [id, navigate])
 
   function update(e) {
     e.preventDefault()
-    let liste = localStorage.getItem('btc-spa-joueurs')
-    liste = JSON.parse(liste)
-
-    let indice = -1
-    for (let i = 0; i < liste.length; i++)
-      if (liste[i].id === Number(id)) indice = i
-
-    if (indice === -1) {
-      alert("Erreur lors de l'enregistrement")
-      return null
-    }
-
-    liste[indice] = formUpdate
-    localStorage.setItem('btc-spa-joueurs', JSON.stringify(liste))
-    navigate('/joueurs')
+    let res = joueursProvider.update(formUpdate)
+    if (res) navigate('/joueurs')
+    else alert("Erreur lors de l'enregistrement")
   }
 
   function reset() {

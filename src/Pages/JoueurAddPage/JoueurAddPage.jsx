@@ -1,6 +1,7 @@
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { JoueursProvider } from './../../Providers/JoueursProvider'
 
 export default function JoueurAddPage() {
   const [formAdd, setFormAdd] = useState({
@@ -10,23 +11,15 @@ export default function JoueurAddPage() {
     pseudo: '',
   })
 
+  const joueursProvider = new JoueursProvider()
   const navigate = useNavigate()
 
   function add(e) {
     e.preventDefault()
-
-    const id = Date.now()
-    let tmpForm = { ...formAdd }
-    tmpForm.id = id
-    setFormAdd(tmpForm)
-
-    let joueurs = localStorage.getItem('btc-spa-joueurs')
-    if (joueurs === null) joueurs = '[]'
-    joueurs = JSON.parse(joueurs)
-    joueurs.push(tmpForm)
-    localStorage.setItem('btc-spa-joueurs', JSON.stringify(joueurs))
+    joueursProvider.add(formAdd)
     navigate('/joueurs')
   }
+
   return (
     <>
       <Container>

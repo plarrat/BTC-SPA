@@ -1,27 +1,25 @@
 import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { JoueursProvider } from './../../Providers/JoueursProvider'
 
 export default function JoueurPage() {
   const [joueurs, setJoueurs] = useState([])
+  const joueurProvider = new JoueursProvider()
 
   useEffect(() => {
-    let datas = localStorage.getItem('btc-spa-joueurs')
-      ? localStorage.getItem('btc-spa-joueurs')
-      : []
-    datas = JSON.parse(datas)
+    let datas = joueurProvider.getJoueurs()
     setJoueurs(datas)
   }, [])
 
-  function remove(joueur, indice) {
+  function remove(joueur) {
     let rep = window.confirm(
       `Etes-vous sur de vouloir supprimer le joueur ${joueur.prenom} ${joueur.nom}`
     )
     if (rep) {
-      let tmp = [...joueurs]
-      tmp.splice(indice, 1)
-      setJoueurs(tmp)
-      localStorage.setItem('btc-spa-joueurs', JSON.stringify(tmp))
+      joueurProvider.remove(joueur)
+      let datas = joueurProvider.getJoueurs()
+      setJoueurs(datas)
     }
   }
 
@@ -38,7 +36,7 @@ export default function JoueurPage() {
           </Button>
         </td>
         <td>
-          <Button variant="danger" onClick={() => remove(joueur, indice)}>
+          <Button variant="danger" onClick={() => remove(joueur)}>
             Supprimer
           </Button>
         </td>
